@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">SimpleNotes</string>
+    <string name="begin_button">Begin</string>
 </resources>
