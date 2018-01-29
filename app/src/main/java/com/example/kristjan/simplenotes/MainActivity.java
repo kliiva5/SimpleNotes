@@ -26,20 +26,20 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
         // Check if the user is already singed in update the UI accordingly
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        updateUI(currentUser);
+        redirectUser(currentUser);
     }
 
     /**
      * @param user - describes the currently signed in user
      *
-     *  Method for updating the UI according to sign-in status
+     *  Method for redirecting the user to the required activity
      */
-    private void updateUI(FirebaseUser user) {
+    private void redirectUser(FirebaseUser user) {
         if(user != null) {
-            // TODO: Get the current user's profile data and set it to the top bar
+            // TODO: Get the current user's profile data and redirect the user to the Profile Activity page
         } else {
             // The user was not signed in show the default homepage (MainActivity in this case)
-            // TODO: Hide the required elements when the user is not signed in
+            // TODO: Keep the user on the same activity
         }
     }
 
