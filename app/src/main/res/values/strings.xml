@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">SimpleNotes</string>
     <string name="begin_button">Begin</string>
+    <string name="login_button">Log In</string>
+    <string name="new_user_text">Don\'t have an account yet?</string>
+    <string name="email_field_hint">Email</string>
+    <string name="password_field_hint">Password</string>
+    <string name="new_user_button">Tap here</string>
 </resources>
