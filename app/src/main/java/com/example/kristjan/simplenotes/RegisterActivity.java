@@ -1,5 +1,6 @@
 package com.example.kristjan.simplenotes;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -38,6 +39,21 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         // Initialize authentication
         mAuth = FirebaseAuth.getInstance();
     }
+
+     @Override
+     public void onStart() {
+        super.onStart();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        redirectUser(currentUser);
+     }
+
+     private void redirectUser(FirebaseUser user) {
+        if(user != null) {
+            Intent intent = new Intent(this, ProfileActivity.class);
+            finish();
+            startActivity(intent);
+        }
+     }
 
     /**
      *
