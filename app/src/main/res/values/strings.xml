@@ -3,7 +3,11 @@
     <string name="begin_button">Begin</string>
     <string name="login_button">Log In</string>
     <string name="new_user_text">Don\'t have an account yet?</string>
+    <string name="existing_user_note">Already have an account?</string>
     <string name="email_field_hint">Email</string>
     <string name="password_field_hint">Password</string>
     <string name="new_user_button">Tap here</string>
+    <string name="confirm_password_field_hint">Confirm Password</string>
+    <string name="signup_button">Sign Up</string>
+
 </resources>
