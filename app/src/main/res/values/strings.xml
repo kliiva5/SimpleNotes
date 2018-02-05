@@ -9,5 +9,7 @@
     <string name="new_user_button">Tap here</string>
     <string name="confirm_password_field_hint">Confirm Password</string>
     <string name="signup_button">Sign Up</string>
-
+    <string name="logout_button">Log Out</string>
+    <string name="homework_view_button">New Homework</string>
+    <string name="welcome_message">Welcome!</string>
 </resources>
