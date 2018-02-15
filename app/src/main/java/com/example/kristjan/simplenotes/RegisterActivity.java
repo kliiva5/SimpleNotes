@@ -68,25 +68,23 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         if(!checkFields()){
             // User did not fill the required fields
             return;
-        } else {
-            // User filled the required fields, continue with registering the user
-            mAuth.createUserWithEmailAndPassword(email, password)
-                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()){
-                            // Sign up was successful, redirect the user to their profile page
-                            // TODO: Create a dialog for redirecting
+        }
+        // User filled the required fields, continue with registering the user
+        mAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if(task.isSuccessful()){
+                            // Sign in was successful, redirect the user to the required activity
+                            // TODO: Create dialog for redirecting
                             FirebaseUser newUser = mAuth.getCurrentUser();
                         } else {
-                            // Sign up failed, display an error message for the user
-                            Toast.makeText(RegisterActivity.this, "Authentication failed, please try again later",
+                            // Sign in failed, show an error to the user
+                            Toast.makeText(RegisterActivity.this, "Authentication failed",
                                     Toast.LENGTH_SHORT).show();
                         }
-                    })
-        });
-
-        }
+                    }
+                });
     }
 
     /**
