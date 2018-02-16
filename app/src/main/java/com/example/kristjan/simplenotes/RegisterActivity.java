@@ -103,7 +103,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         // Get the required field entries for validation
         String email = mUserEmailField.getText().toString();
         String password = mUserPasswordField.getText().toString();
-        String confrimPassword = mConfirmPasswordField.getText().toString();
+        String confirmPassword = mConfirmPasswordField.getText().toString();
 
         // Check the corresponding fields to see if the user entered the required data
         if(TextUtils.isEmpty(email)){
@@ -120,14 +120,14 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             mUserPasswordField.setError(null);
         }
 
-        if(TextUtils.isEmpty(confrimPassword)) {
+        if(TextUtils.isEmpty(confirmPassword)) {
             mConfirmPasswordField.setError("Please enter your password again");
             valid = false;
         } else {
             mConfirmPasswordField.setError(null);
         }
 
-        if(!password.equals(confrimPassword)){
+        if(!password.equals(confirmPassword)){
             mConfirmPasswordField.setError("Passwords must match");
             valid = false;
         } else {

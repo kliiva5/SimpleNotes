@@ -86,7 +86,7 @@ public class HomeworkActivity extends AppCompatActivity {
         }
     }
 
-    // Method for checking (ticking) completed assignments
+    /* Method for checking (ticking) completed assignments */
     private void completeAssignment(){
         // Retrieve the current user's ID for looking up their assignment
         String userID = mAuth.getCurrentUser().getUid();

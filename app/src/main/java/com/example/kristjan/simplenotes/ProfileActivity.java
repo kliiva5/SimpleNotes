@@ -17,6 +17,9 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+
+        // Initialize authentication
+        mAuth = FirebaseAuth.getInstance();
     }
 
     @Override
@@ -42,10 +45,19 @@ public class ProfileActivity extends AppCompatActivity {
         }
     }
 
-    /* Called when the user taps the View Homework button */
+    /* Called when the user taps the New Homework button */
     public void homeworkButton(View view) {
-        Intent intent = new Intent(this, HomeworkActivity.class);
+        Intent intent = new Intent(this, NewHomeworkActivity.class);
         finish();
         startActivity(intent);
     }
+
+    /* Called when the user taps the Log Out button */
+    private void logOutButton(){
+        mAuth.signOut();
+        // User was signed out, redirect to the required activity
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        redirectUser(currentUser);
+    }
+
 }
