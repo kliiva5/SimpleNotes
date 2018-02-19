@@ -22,6 +22,8 @@ public class HomeworkActivity extends AppCompatActivity {
     private TextView mDueDateField;
     private TextView mStatusField;
 
+    private ValueEventListener mAssignmentListener;
+
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
 
@@ -31,9 +33,9 @@ public class HomeworkActivity extends AppCompatActivity {
         setContentView(R.layout.activity_homework);
 
         // Initialize views
-       // mDescriptionField = findViewById(R.id.description_field);
-       // mStatusField = findViewById(R.id.status_field);
-       // mDueDateField = findViewById(R.id.due_date_field);
+        mDescriptionField = findViewById(R.id.description_field);
+        mStatusField = findViewById(R.id.status_field);
+        mDueDateField = findViewById(R.id.due_date_field);
 
         // Initialize database
         mDatabase = FirebaseDatabase.getInstance().getReference()
@@ -71,6 +73,22 @@ public class HomeworkActivity extends AppCompatActivity {
                         Toast.LENGTH_SHORT).show();
             }
         };
+
+        mDatabase.addValueEventListener(assignmentListener);
+
+        // Keeping a copy of assignment listener for later removal
+        mAssignmentListener = assignmentListener;
+    }
+
+    @Override
+    public void onStop(){
+        super.onStop();
+
+        // Remove assignment value event listener
+        if(mAssignmentListener != null) {
+            mDatabase.removeEventListener(mAssignmentListener);
+        }
+
     }
 
     private void redirectUser(FirebaseUser user) {
@@ -88,11 +106,7 @@ public class HomeworkActivity extends AppCompatActivity {
 
     /* Method for checking (ticking) completed assignments */
     private void completeAssignment(){
-        // Retrieve the current user's ID for looking up their assignment
-        String userID = mAuth.getCurrentUser().getUid();
-        // Retrieve the required ID of the assignment to update it's status
-        String key = mDatabase.child(userID).getKey();
-        mDatabase.child(userID).child(key).child("status").setValue("Completed");
+        // TODO: Get the homework key for ticking tasks
     }
 
 }

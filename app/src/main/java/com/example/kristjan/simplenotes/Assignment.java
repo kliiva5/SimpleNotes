@@ -1,16 +1,18 @@
 package com.example.kristjan.simplenotes;
 
+import com.google.firebase.database.Exclude;
+
 /**
  * Created by Kristjan on 14/02/2018.
  */
 
 public class Assignment {
 
-    public String assignment_id;
-    public String date_due;
-    public String date_added;
-    public String assignment_status;
-    public String assignment_description;
+    private String assignment_id;
+    private String date_due;
+    private String date_added;
+    private String assignment_status;
+    private String assignment_description;
 
     public Assignment() {
         // Default constructor required for calls to DataSnapshot.getValue(Assignment.class)

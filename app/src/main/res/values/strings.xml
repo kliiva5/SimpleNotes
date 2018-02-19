@@ -12,4 +12,5 @@
     <string name="logout_button">Log Out</string>
     <string name="homework_view_button">New Homework</string>
     <string name="welcome_message">Welcome!</string>
+    <string name="time_left_indicator">Time Left:</string>
 </resources>
