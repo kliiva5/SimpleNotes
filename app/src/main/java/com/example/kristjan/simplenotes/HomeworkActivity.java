@@ -3,6 +3,7 @@ package com.example.kristjan.simplenotes;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.format.DateUtils;
 import android.util.Log;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -16,11 +17,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Date;
+
 public class HomeworkActivity extends AppCompatActivity {
 
     private TextView mDescriptionField;
     private TextView mDueDateField;
-    private TextView mStatusField;
 
     private ValueEventListener mAssignmentListener;
 
@@ -34,7 +36,6 @@ public class HomeworkActivity extends AppCompatActivity {
 
         // Initialize views
         mDescriptionField = findViewById(R.id.description_field);
-        mStatusField = findViewById(R.id.status_field);
         mDueDateField = findViewById(R.id.due_date_field);
 
         // Initialize database
@@ -61,7 +62,6 @@ public class HomeworkActivity extends AppCompatActivity {
                 Assignment assignment = dataSnapshot.getValue(Assignment.class);
                 mDescriptionField.setText(assignment.assignment_description);
                 mDueDateField.setText(assignment.date_due);
-                mStatusField.setText(assignment.assignment_status);
             }
 
             @Override
@@ -102,6 +102,11 @@ public class HomeworkActivity extends AppCompatActivity {
             finish();
             startActivity(intent);
         }
+    }
+
+    /* Method for calculating time remaining */
+    private void calculateTimeRemaining() {
+        // TODO: Add logic for calculating remaining time (until assignment's deadline)
     }
 
     /* Method for checking (ticking) completed assignments */
