@@ -42,7 +42,7 @@
         app:layout_constraintGuide_percent="0.75" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/userEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -52,12 +52,12 @@
         android:fontFamily="cursive"
         android:hint="@string/email_field_hint"
         android:inputType="textEmailAddress"
-        app:layout_constraintBottom_toTopOf="@+id/editText2"
+        app:layout_constraintBottom_toTopOf="@+id/userPassword"
         app:layout_constraintEnd_toStartOf="@+id/guideline13"
         app:layout_constraintStart_toStartOf="@+id/guideline14" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/userPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -67,12 +67,12 @@
         android:fontFamily="cursive"
         android:hint="@string/password_field_hint"
         android:inputType="textPassword"
-        app:layout_constraintBottom_toTopOf="@+id/editText3"
+        app:layout_constraintBottom_toTopOf="@+id/userConfirmPassword"
         app:layout_constraintEnd_toStartOf="@+id/guideline13"
         app:layout_constraintStart_toStartOf="@+id/guideline14" />
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/userConfirmPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
@@ -140,7 +140,7 @@
         android:text="@string/signup_button"
         android:textAlignment="center"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/editText"
+        app:layout_constraintBottom_toTopOf="@+id/userEmail"
         app:layout_constraintEnd_toStartOf="@+id/guideline13"
         app:layout_constraintStart_toStartOf="@+id/guideline14" />
 </android.support.constraint.ConstraintLayout>
