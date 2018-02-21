@@ -19,7 +19,8 @@
         <activity android:name=".LoginActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".ProfileActivity" />
-        <activity android:name=".HomeworkActivity"></activity>
+        <activity android:name=".HomeworkActivity" />
+        <activity android:name=".NewHomeworkActivity"></activity>
     </application>
 
 </manifest>

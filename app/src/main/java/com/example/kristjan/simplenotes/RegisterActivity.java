@@ -78,6 +78,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                             // Sign in was successful, redirect the user to the required activity
                             // TODO: Create dialog for redirecting
                             FirebaseUser newUser = mAuth.getCurrentUser();
+                            redirectUser(newUser);
                         } else {
                             // Sign in failed, show an error to the user
                             Toast.makeText(RegisterActivity.this, "Authentication failed",
