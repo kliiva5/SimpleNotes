@@ -51,7 +51,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:fontFamily="cursive"
+        android:fontFamily="sans-serif"
         android:text="@string/logout_button"
         app:layout_constraintBottom_toTopOf="@+id/guideline20"
         app:layout_constraintEnd_toStartOf="@+id/guideline16"
@@ -81,7 +81,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:backgroundTint="@android:color/transparent"
-        android:fontFamily="cursive"
+        android:fontFamily="sans-serif"
         android:onClick="homeworkButton"
         android:text="@string/homework_view_button"
         android:textSize="18sp"
@@ -97,7 +97,7 @@
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:fontFamily="cursive"
+        android:fontFamily="sans-serif"
         android:text="@string/welcome_message"
         android:textAlignment="center"
         android:textSize="24sp"
@@ -111,5 +111,20 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.2" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="TextView"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/listView"
+        app:layout_constraintEnd_toStartOf="@+id/guideline16"
+        app:layout_constraintStart_toStartOf="@+id/guideline17"
+        app:layout_constraintTop_toTopOf="@+id/guideline22" />
 
 </android.support.constraint.ConstraintLayout>

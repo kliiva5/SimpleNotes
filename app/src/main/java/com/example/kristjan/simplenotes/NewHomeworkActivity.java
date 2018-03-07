@@ -1,21 +1,31 @@
 package com.example.kristjan.simplenotes;
 
 import android.content.Intent;
+import android.support.v4.app.DialogFragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import org.w3c.dom.Text;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-public class NewHomeworkActivity extends AppCompatActivity implements View.OnClickListener {
+public class NewHomeworkActivity extends AppCompatActivity implements NewHomeworkDialogFragment.NewHomeWorkListener {
 
     private EditText mSubjectField;
     private EditText mDueDateField;
@@ -34,9 +44,6 @@ public class NewHomeworkActivity extends AppCompatActivity implements View.OnCli
         mDueDateField = findViewById(R.id.date_field);
         mDescriptionField = findViewById(R.id.homework_descritpion_field);
 
-        // Add onClickListeners for buttons
-        findViewById(R.id.add_assignment_button).setOnClickListener(this);
-
         // Initialize authentication
         mAuth = FirebaseAuth.getInstance();
 
@@ -50,6 +57,11 @@ public class NewHomeworkActivity extends AppCompatActivity implements View.OnCli
         super.onStart();
         FirebaseUser currentUser = mAuth.getCurrentUser();
         redirectUser(currentUser);
+    }
+
+    public void addHomeworkButton (View view) {
+        DialogFragment newFragment = new NewHomeworkDialogFragment();
+        newFragment.show(getSupportFragmentManager(), "Add Homework");
     }
 
     private void redirectUser(FirebaseUser user) {
@@ -79,14 +91,21 @@ public class NewHomeworkActivity extends AppCompatActivity implements View.OnCli
             String currentUserID = mAuth.getCurrentUser().getUid();
             String key = mDatabase.child("Assignments").child(currentUserID).push().getKey();
 
-            // Create a new DatabaseReference to keep previously added homeworks unmodified
+            // Create a new DatabaseReference to keep previously added homework unmodified
             DatabaseReference mNewHomeworkRef = mDatabase.child("Assignments").child(currentUserID).child(key);
             Assignment assignment = new Assignment(subject, due_date, description);
             Map<String, Object> new_assignment = assignment.toMap();
 
             mNewHomeworkRef.updateChildren(new_assignment);
 
-            // TODO: Add a dialogue to notify the user about successful execution
+            // Finish the current activity and start the ProfileActivity
+            Intent intent = new Intent(this, ProfileActivity.class);
+            finish();
+            startActivity(intent);
+
+            // Also show the user a Toast on a successful submission
+            Toast.makeText(this, "Assignment added", Toast.LENGTH_SHORT).show();
+
         }
     }
 
@@ -94,15 +113,42 @@ public class NewHomeworkActivity extends AppCompatActivity implements View.OnCli
 
         boolean valid = true;
 
+        // Get the information the user entered
+        String due_date = mDueDateField.getText().toString();
+        String subject = mSubjectField.getText().toString();
+        String description = mDescriptionField.getText().toString();
+
+        // Check if the user filled the required fields
+        if(TextUtils.isEmpty(due_date)) {
+            mDueDateField.setError("Due date is required");
+        } else {
+            mDueDateField.setError(null);
+        }
+
+        if(TextUtils.isEmpty(subject)) {
+            mSubjectField.setError("Subject is required");
+        } else {
+            mSubjectField.setError(null);
+        }
+
+        if(TextUtils.isEmpty(description)) {
+            mDescriptionField.setError("Assignment description is required");
+        } else {
+            mDescriptionField.setError(null);
+        }
+
         return valid;
     }
 
-
+    /* Called when the user taps the Yes button on the dialog */
     @Override
-    public void onClick(View view) {
-        int i = view.getId();
-        if(i == R.id.add_assignment_button) {
-            addNewHomework(mSubjectField.getText().toString(), mDueDateField.getText().toString(), mDescriptionField.getText().toString());
-        }
+    public void onDialogPositiveClick(DialogFragment dialog) {
+        addNewHomework(mSubjectField.getText().toString(), mDueDateField.getText().toString(), mDescriptionField.getText().toString());
+    }
+
+    /* Called when the user taps the No button ont he dialog */
+    @Override
+    public void onDialogNegativeClick(DialogFragment dialog) {
+        dialog.dismiss();
     }
 }
