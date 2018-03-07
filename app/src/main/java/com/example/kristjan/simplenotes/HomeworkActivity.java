@@ -54,7 +54,7 @@ public class HomeworkActivity extends AppCompatActivity {
         FirebaseUser currentUser = mAuth.getCurrentUser();
         redirectUser(currentUser);
 
-        // Add value event listener to the post
+        // Add value event listener to the assignment
         ValueEventListener assignmentListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
