@@ -18,4 +18,5 @@
     <string name="cancel_button">Cancel</string>
     <string name="forgot_password_button">Forgot Password?</string>
     <string name="password_reset_button">Reset Password</string>
+    <string name="password_reset_button_hint">Reset</string>
 </resources>

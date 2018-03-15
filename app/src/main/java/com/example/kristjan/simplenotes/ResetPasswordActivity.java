@@ -27,10 +27,10 @@ public class ResetPasswordActivity extends AppCompatActivity implements View.OnC
         setContentView(R.layout.activity_reset_password);
 
         // Get the required views
-        mUserPasswordResetEmail = findViewById(R.id.mPasswordResetField);
+        mUserPasswordResetEmail = findViewById(R.id.passwordResetField);
 
         // Set onClickListeners to buttons
-        findViewById(R.id.mPasswordResetButton).setOnClickListener(this);
+        findViewById(R.id.passwordResetButton).setOnClickListener(this);
 
         // Initialize authentication
         mAuth = FirebaseAuth.getInstance();
@@ -71,10 +71,20 @@ public class ResetPasswordActivity extends AppCompatActivity implements View.OnC
                 });
     }
 
+    private void redirectUser(FirebaseUser user) {
+        if(user != null) {
+            Intent intent = new Intent(this, ProfileActivity.class);
+            finish();
+            startActivity(intent);
+        } else {
+            return;
+        }
+    }
+
     @Override
     public void onClick(View view) {
         int i = view.getId();
-        if(i == R.id.mPasswordResetButton) {
+        if(i == R.id.passwordResetButton) {
             sendUserPasswordResetEmail(mUserPasswordResetEmail.getText().toString());
         }
     }

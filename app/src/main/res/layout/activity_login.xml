@@ -138,6 +138,7 @@
         android:layout_marginBottom="16dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
+        android:onClick="forgotPasswordButton"
         android:text="@string/forgot_password_button"
         android:textColor="@color/colorPrimary"
         app:layout_constraintBottom_toTopOf="@+id/guideline9"
