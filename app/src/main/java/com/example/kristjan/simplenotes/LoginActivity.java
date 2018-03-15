@@ -50,7 +50,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
      * @param user - describes the currently logged in user
      *
      *  Method for redirecting users if required
-     *  Users will only be redirected if they are not logged in
+     *  Users will only be redirected if they are logged in
      */
     private void redirectUser(FirebaseUser user) {
         if (user != null) {
@@ -93,6 +93,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     public void newUserButton(View view){
         Intent intent = new Intent(this, RegisterActivity.class);
+        finish();
+        startActivity(intent);
+    }
+
+    public void forgotPasswordButton (View view) {
+        Intent intent = new Intent(this, ResetPasswordActivity.class);
         finish();
         startActivity(intent);
     }
