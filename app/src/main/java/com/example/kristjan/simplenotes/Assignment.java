@@ -25,6 +25,18 @@ public class Assignment {
         this.assignment_description = assignment_description;
     }
 
+    public String getSubject() {
+        return assignment_subject;
+    }
+
+    public String getDueDate() {
+        return date_due;
+    }
+
+    public String getDescription() {
+        return assignment_description;
+    }
+
     @Exclude
     public Map<String, Object> toMap() {
         HashMap<String, Object> result = new HashMap<>();
