@@ -121,23 +121,33 @@ public class NewHomeworkActivity extends AppCompatActivity implements NewHomewor
         // Check if the user filled the required fields
         if(TextUtils.isEmpty(due_date)) {
             mDueDateField.setError("Due date is required");
+            valid = false;
         } else {
             mDueDateField.setError(null);
         }
 
         if(TextUtils.isEmpty(subject)) {
             mSubjectField.setError("Subject is required");
+            valid = false;
         } else {
             mSubjectField.setError(null);
         }
 
         if(TextUtils.isEmpty(description)) {
             mDescriptionField.setError("Assignment description is required");
+            valid = false;
         } else {
             mDescriptionField.setError(null);
         }
 
         return valid;
+    }
+
+    /* Called when the user taps the Cancel button */
+    public void cancelButton(View view) {
+        Intent intent = new Intent(this, ProfileActivity.class);
+        finish();
+        startActivity(intent);
     }
 
     /* Called when the user taps the Yes button on the dialog */

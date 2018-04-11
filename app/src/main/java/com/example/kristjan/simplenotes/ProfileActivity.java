@@ -27,6 +27,9 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     private ArrayList<String> assignmentList = new ArrayList<>();
     private ArrayAdapter<String> assignmentArrayAdapter;
 
+    // ArrayList for assignment keys
+    private ArrayList<String>mAssignmentKeys = new ArrayList<>();
+
     private DatabaseReference mDatabase;
     private FirebaseAuth mAuth;
 
@@ -63,9 +66,13 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                 // Get the required data from the DataSnapshot
                 String assignment_subject = dataSnapshot.child("Subject").getValue(String.class);
                 String assignment_due_date = dataSnapshot.child("Due Date").getValue(String.class);
+                String assignment_key = dataSnapshot.getKey();
 
                 // Add the acquired data to the list in order to display the user's assignments
-                assignmentList.add(assignment_subject);
+                assignmentList.add(assignment_subject + "\n" + assignment_due_date);
+
+                // Also add the key to the keys ArrayList for later updating or removal
+                mAssignmentKeys.add(assignment_key);
 
                 // Notify the ArrayAdapter about the changes
                 assignmentArrayAdapter.notifyDataSetChanged();
@@ -73,14 +80,31 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                // Update the assignment that the user changed
+                String updated_assignemnt_subject = dataSnapshot.child("Subject").getValue(String.class);
+                String updated_assignment_due_date = dataSnapshot.child("Due Date").getValue(String.class);
+
+                // Get the key for updating the required assignment
+                String assignment_key = dataSnapshot.getKey();
+                int assignmentKeyIndex = mAssignmentKeys.indexOf(assignment_key);
+
+                // Update the assignment
+                assignmentList.set(assignmentKeyIndex, updated_assignemnt_subject + "\n" + updated_assignment_due_date);
+
+                // Notify about the changes
+                assignmentArrayAdapter.notifyDataSetChanged();
 
             }
 
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot) {
-                // Remove the required data from the list
-                String removed_assignment = dataSnapshot.getKey();
-                assignmentList.remove(removed_assignment);
+                // Remove the required data from the list(s)
+                String removed_assignment_subject = dataSnapshot.child("Subject").getValue(String.class);
+                String removed_assignment_due_date = dataSnapshot.child("Due Date").getValue(String.class);
+                String removed_assignment_key = dataSnapshot.getKey();
+
+                assignmentList.remove(removed_assignment_subject + "\n" + removed_assignment_due_date);
+                mAssignmentKeys.remove(removed_assignment_key);
 
                 // Notify about the changes
                 assignmentArrayAdapter.notifyDataSetChanged();

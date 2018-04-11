@@ -93,6 +93,7 @@
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
+        android:onClick="cancelButton"
         android:text="@string/cancel_button"
         android:textColor="@color/colorPrimary"
         app:layout_constraintBottom_toTopOf="@+id/guideline33"
